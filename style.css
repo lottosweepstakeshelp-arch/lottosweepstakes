@@ -1,58 +1,288 @@
+/* Reset default styles for consistency */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Custom properties for theming */
+:root {
+    --primary-color: #1a3c34; /* Emerald green */
+    --accent-color: #ffd700; /* Gold */
+    --secondary-color: #ffffff; /* White for containers */
+    --text-color: #2d2d2d; /* Dark gray for text */
+    --header-bg: linear-gradient(135deg, #0a1f1b 0%, #134d44 100%); /* Gradient for header */
+    --footer-bg: #0a1f1b; /* Solid dark footer */
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+/* General body styling */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #f7f7f7;
-  color: #333;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #f5f7fa;
+    color: var(--text-color);
+    line-height: 1.7;
+    overflow-x: hidden;
 }
 
+/* Header styling */
 header {
-  background: #004aad;
-  color: white;
-  padding: 15px;
-  text-align: center;
+    background: var(--header-bg);
+    color: #fff;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow);
 }
 
-header .logo {
-  width: 120px;
-  margin-bottom: 10px;
+/* Logo styling */
+.logo {
+    max-width: 160px;
+    height: auto;
+    display: block;
+    margin: 0 auto 15px;
+    transition: var(--transition);
 }
 
-nav a {
-  color: white;
-  margin: 0 15px;
-  text-decoration: none;
-  font-weight: bold;
+.logo:hover {
+    transform: scale(1.05);
 }
 
-nav a:hover {
-  text-decoration: underline;
+/* Navigation styling */
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 30px;
 }
 
-section {
-  padding: 30px;
-  max-width: 800px;
-  margin: auto;
-  background: white;
-  margin-top: 20px;
-  border-radius: 8px;
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    transition: var(--transition);
 }
 
+nav ul li a:hover,
+nav ul li a.active {
+    color: var(--accent-color);
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after {
+    width: 100%;
+}
+
+/* Main content container */
+.container {
+    max-width: 1240px;
+    margin: 30px auto;
+    padding: 30px;
+    background: var(--secondary-color);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+/* Headings and typography */
 h1 {
-  color: #004aad;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 700;
 }
 
-.testimonial {
-  border-left: 4px solid #004aad;
-  padding-left: 10px;
-  margin: 15px 0;
-  font-style: italic;
+h2 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-weight: 600;
 }
 
+p {
+    font-size: clamp(1rem, 3vw, 1.15rem);
+    margin-bottom: 25px;
+    color: #4a4a4a;
+}
+
+/* Button styling */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 28px;
+    background: var(--accent-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--transition);
+    box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+}
+
+.btn:hover {
+    background: #e6c200;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+}
+
+/* Form styling (Contact page) */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+input,
+textarea {
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.2);
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Services grid (Services page) */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+
+.service-item {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.service-item h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+/* Footer styling */
 footer {
-  background: #004aad;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  margin-top: 30px;
-  }
+    background: var(--footer-bg);
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.95rem;
+    border-top: 3px solid var(--accent-color);
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .logo {
+        max-width: 140px;
+    }
+
+    nav ul {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 15px 0;
+    }
+
+    .logo {
+        max-width: 120px;
+        margin-bottom: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav ul li a {
+        font-size: 1rem;
+    }
+
+    h1 {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+    }
+
+    .btn {
+        padding: 10px 24px;
+    }
+
+    form {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        max-width: 100px;
+    }
+
+    nav ul li a {
+        font-size: 0.95rem;
+    }
+
+    .container {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+}
